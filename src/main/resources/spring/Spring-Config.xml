@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+
+    <!-- 加载属性配置文件 -->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <import resource="classpath:spring/Spring-Hive.xml"/>
+    <import resource="classpath:spring/Spring-Mybatis.xml"/>
+
+    <!-- 开启扫描包，识别Spring注解，实现依赖注入-->
+    <context:component-scan base-package="org.shGasUsage"/>
+
+
+</beans>

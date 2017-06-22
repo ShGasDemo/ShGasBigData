@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.shGasUsage.dao.mysql.UsageDao">
+    <!-- 目的:为service接口方法提供sql语句配置-->
+
+    <select id="findUsageGasNum" resultType="org.shGasUsage.entity.UsageEntity" parameterType="Integer">
+        select usagegas , COUNT(usagegas) AS 'usageNum'
+        from usageGas
+        where year = #{year}
+        group by usagegas
+        having COUNT(usagegas) <![CDATA[<]]> 200 and COUNT(usagegas)>0
+        order by usagegas desc
+    </select>
+
+    <select id="findUsageGas" resultType="Integer">
+        select distinct(usagegas)
+        from usageGas
+        order by usagegas asc
+    </select>
+
+    <select id="findUsageCompanyGasNum" resultType="String" parameterType="Integer">
+        select total_consumption_gas
+        from year_area_top_10
+        where year = #{year}
+        order by total_consumption_gas desc
+    </select>
+
+    <select id="findUsageCompanyName" resultType="String" parameterType="Integer">
+        select company
+        from year_area_top_10
+        where year = #{year}
+    </select>
+</mapper>
