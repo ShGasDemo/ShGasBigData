@@ -39,6 +39,6 @@
 </body>
 <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="resources/js/echarts.js"></script>
-<script type="text/javascript" src="resources/js/statistical2.js"></script>
+<script type="text/javascript" src="resources/js/statistical.js"></script>
 
 </html>

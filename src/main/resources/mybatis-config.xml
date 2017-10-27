@@ -49,4 +49,12 @@
         <setting name="defaultStatementTimeout" value="25000"/>
     </settings>
 
+    <!--<typeAliases>-->
+        <!--<typeAlias alias="UsageEntity" type="org.shGasUsage.entity.UsageEntity"/>-->
+    <!--</typeAliases>-->
+
+    <!--<mappers>-->
+        <!--<mapper resource="classpath:mapper/*.xml" />-->
+    <!--</mappers>-->
+
 </configuration>

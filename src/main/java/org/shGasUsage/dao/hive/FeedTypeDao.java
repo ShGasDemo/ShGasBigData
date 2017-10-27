@@ -17,7 +17,6 @@ import java.util.List;
 @Repository
 public class FeedTypeDao {
 
-
     //执行普通的sql查询
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -26,7 +25,7 @@ public class FeedTypeDao {
     public enum QueryType{
         feedType,//反映类别
         feedArea,//反映区名
-        feedYear;//反映年份
+        feedYear,//反映年份
     }
 
     /**
@@ -48,11 +47,13 @@ public class FeedTypeDao {
             //对结果进行处理
             for (FeedTypeEntity feedTypeEntity : feedTypeList){
                 for (FeedTypeEntity feedTypeResultEntity: feedTypeResultList){
+                    //按年份查询
                     if (queryType.equals(QueryType.feedYear)){
                         if (feedTypeResultEntity.getFeedYear().equals(feedTypeEntity.getFeedYear())){
                             feedTypeResultEntity.setFeedNumber(feedTypeEntity.getFeedNumber());
                         }
                     }
+                    //按反映类别种类和反映区名查询
                     else
                         if (feedTypeResultEntity.getFeedType().equals(feedTypeEntity.getFeedType())){
                             feedTypeResultEntity.setFeedTypeNum(feedTypeResultEntity.getFeedTypeNum()+feedTypeEntity.getFeedTypeNum());
@@ -95,11 +96,14 @@ public class FeedTypeDao {
     private String getQuerySqlStr(QueryType queryType,Integer year,String feedArea){
         switch (queryType){
             case feedType:
-                return String.format("select fy_leibie_type as feedType, count(fy_leibie_type) as feedTypeNum from hotxx_%d where fy_leibie_type between 0 and 7 group by fy_leibie_type order by fy_leibie_type",year);
+                return String.format("select fy_leibie_type as feedType, count(fy_leibie_type) as feedTypeNum from hotxx_%d where fy_leibie_type between 0 and 7 group by fy_leibie_type " +
+                        "order by fy_leibie_type",year);
             case feedArea:
-                return String.format("select fy_leibie_type as feedType, count(fy_leibie_type) as feedTypeNum from hotxx_%d where fy_leibie_type between 0 and 7 and fy_quming = \"%s\" group by fy_leibie_type order by fy_leibie_type",year,feedArea);
+                return String.format("select fy_leibie_type as feedType, count(fy_leibie_type) as feedTypeNum from hotxx_%d where fy_leibie_type between 0 and 7 and fy_quming = \"%s\" group by fy_leibie_type " +
+                        "order by fy_leibie_type",year,feedArea);
             case feedYear:
-                return String.format("select year(create_time) as feedYear, count(*) as feedNumber from hotxx_%d group by year(create_time)",year);
+                return String.format("select year(create_time) as feedYear, count(*) as feedNumber from hotxx_%d " +
+                        "group by year(create_time)",year);
         }
         return null;
     }

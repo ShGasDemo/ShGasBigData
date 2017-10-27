@@ -29,9 +29,9 @@
 
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <!-- 前缀-->
-        <property name="prefix">
-            <value>/WEB-INF/page/</value>
-        </property>
+        <!--<property name="prefix">-->
+            <!--<value>/WEB-INF/page/</value>-->
+        <!--</property>-->
         <!-- 后缀-->
         <property name="suffix">
             <value>.jsp</value>

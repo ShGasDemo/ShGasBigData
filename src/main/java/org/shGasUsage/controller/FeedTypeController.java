@@ -26,7 +26,7 @@ public class FeedTypeController {
     @Autowired
     private FeedTypeDao feedTypeDao;
 
-    @RequestMapping(value = "/result",method = RequestMethod.POST)
+    @RequestMapping(value = "/result",method = RequestMethod.POST,consumes = "application/json")
     @ResponseBody
     public FeedTypeResult getFeedTypeResultData(@RequestBody FeedTypeEntity feedTypeEntity){
 
